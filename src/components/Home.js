@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+  import React, { useContext } from "react";
 import ProductCard from "./ProductCard";
 import HeaderSlider from "./HeaderSlider";
 import useTitle from "../hooks/useTitle";
@@ -9,8 +9,8 @@ const Home = () => {
   useTitle("Home");
   // const { products } = useContext(ProductContext);
   const { products } = useMyContext();
-  // console.log(MyContext.products);
-  console.log(products);
+
+
   return (
     <div className="min-h-screen w-full bg-slate-100">
       <HeaderSlider />

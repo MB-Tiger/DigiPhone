@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { BsTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import useMyContext from "../hooks/useMyContext";
 import useTitle from "../hooks/useTitle";
+let counter = 0;
+
 const ShoppingCart = () => {
   useTitle("Cart");
+  const current = new Date();
+  // const date = `${current.getDate()}/${current.getMonth()}/${current.getFullYear()}`;
   const { products, setProducts, cart, setCart, factor, setFactor } =
     useMyContext();
+  const UID = () => `${++counter}-${new Date().getTime()}`;
   const addToCart = (id) => {
     const unicP = products.findIndex((product) => product.id === id);
     const unic = cart.findIndex((product) => product.id === id);
@@ -19,9 +24,6 @@ const ShoppingCart = () => {
     } else {
       setCart([...cart, { id: products[unicP].id, qty: 1 }]);
     }
-    console.log(cart);
-    // console.log(unicP)
-    // console.log(unic)
   };
   const removeFromCart = (id) => {
     const unicP = products.findIndex((product) => product.id === id);
@@ -38,18 +40,34 @@ const ShoppingCart = () => {
   };
   const addToFactor = () => {
     if (cart) {
-      setFactor([...factor, ...cart]);
+      setFactor([
+        ...factor,
+        { products: [...cart], date: new Date().toISOString(), listNumber: UID() },
+      ]);
       products.map((product) => (product.isInCart = false));
       setProducts([...products]);
       setCart([]);
     }
-    // console.log(factor)
   };
   const clearCart = () => {
     products.map((product) => (product.isInCart = false));
     setProducts([...products]);
     setCart([]);
   };
+
+  const calculateTotalPrice = () => {
+    // return cart.map((item) => {
+    //   const obj = products.find((product) => product.id == item.id);
+    //   return { ...obj, quantity: item.qty };
+    // });
+    return cart.reduce((acc, cur) => {
+      const thisProduct = products.find((product) => product.id == cur.id);
+      return acc + cur.qty * thisProduct.price;
+    }, 0);
+  };
+
+  console.log(cart);
+  console.log(products);
 
   return (
     <div className="min-h-screen w-full bg-slate-100 py-10">
@@ -136,14 +154,7 @@ const ShoppingCart = () => {
             </div>
             <div className="flex flex-wrap items-baseline space-x-2 text-center">
               <span>Total payment:</span>
-              <span className="font-semibold">
-                {products
-                    .filter((product) => product.id === Number(...cart.map(c => c.id)))
-                    .reduce(
-                      (acc, cur) => (acc += Number(...cart.map(c => c.qty)) * cur.price),
-                      0
-                    )} $
-              </span>
+              <span className="font-semibold">{calculateTotalPrice()} $</span>
             </div>
           </div>
           <div className="flex flex-wrap items-center justify-between">

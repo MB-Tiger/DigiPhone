@@ -11,7 +11,6 @@ const Login = () => {
   const [touched, setTouched] = useState({});
   useEffect(() => {
     setErrors(validate(userData));
-    // console.log(errors);
   }, [userData, touched]);
   return (
     <div className="min-h-screen w-full bg-slate-100 px-4 py-10">

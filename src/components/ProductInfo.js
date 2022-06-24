@@ -30,10 +30,7 @@ const ProductInfo = () => {
   const { products, cart, setCart } = useMyContext();
   const [product, setProduct] = useState(null);
   const [colorSelected, setColorSelected] = useState(false);
-  // console.log(id)
-  console.log(product);
-  // console.log(colorSelected);
-  // console.log(cart);
+
   const removeFromCart = (id) => {
     const unicP = products.findIndex((product) => product.id === id);
     const unic = cart.findIndex((product) => product.id === id);
@@ -48,11 +45,8 @@ const ProductInfo = () => {
     setCart([...cart]);
   };
   useEffect(() => {
-    console.log(id);
     const unic = products.findIndex((item) => item.id == id);
-    // products.forEach((item) => console.log(item.id));
-    // console.log("unic : ", unic);
-    // if (unic == -1) return alert("what?!");
+
     setProduct(products[unic]);
   }, []);
   const addToCart = (id) => {

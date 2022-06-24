@@ -4,55 +4,68 @@ import useTitle from "../hooks/useTitle";
 
 const OrdersList = () => {
   useTitle("Orders");
-  const { products, factor, setFactor } = useMyContext();
+  const { products, factor } = useMyContext();
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+  console.log(factor)
   return (
     <div>
       <h3 className="text-xl font-semibold text-blue-900 mb-5">Orders list</h3>
       <div>
         {factor.length ? (
-          <table className="text-center bg-white w-full rounded">
-            <thead>
-              <tr>
-                <th className="p-2 border-b-2">Order</th>
-                <th className="p-2 border-b-2">Image</th>
-                <th className="p-2 border-b-2">Title</th>
-                <th className="p-2 border-b-2">Price</th>
-                <th className="p-2 border-b-2">Quantity</th>
-                <th className="p-2 border-b-2">Total price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {factor.map((f) => {
-                return products
-                  .filter((product) => product.id === f.id)
-                  .map((product, i) => {
-                    return (
-                      <tr key={i}>
-                        <td className="p-2 border-b-2">#{product.id}</td>
-                        <td className="p-2 border-b-2 w-[100px]">
-                          <img
-                            className="w-full"
-                            src={product.image}
-                            alt="product-image"
-                          />
-                        </td>
-                        <td className="p-2 border-b-2">{product.name}</td>
-                        <td className="p-2 border-b-2">
-                          {numberWithCommas(product.price)} $
-                        </td>
-                        <td className="p-2 border-b-2">{f.qty}</td>
-                        <td className="p-2 border-b-2">
-                          {numberWithCommas(f.qty * product.price)} $
-                        </td>
-                      </tr>
-                    );
-                  });
-              })}
-            </tbody>
-          </table>
+          factor.map((f, index) => {
+            return (
+              <div className="bg-white w-full border rounded p-5 mb-5" key={index}>
+                <p className=" font-semibold">Name: Abas Boazar</p>
+                <div className="flex space-x-10 items-baseline">
+                  <p className=" font-semibold">Orders list: {f.listNumber}</p>
+                  <p className=" font-semibold">Date: {f.date}</p>
+                </div>
+                <hr className="my-4" />
+                <table className="text-center bg-white w-full rounded mb-5 border-2">
+                  <thead>
+                    <tr>
+                      <th className="p-2 border-b-2">Order</th>
+                      <th className="p-2 border-b-2">Image</th>
+                      <th className="p-2 border-b-2">Title</th>
+                      <th className="p-2 border-b-2">Price</th>
+                      <th className="p-2 border-b-2">Quantity</th>
+                      <th className="p-2 border-b-2">Total price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {f.products.map((fp) => {
+                      return products
+                        .filter((product) => product.id === fp.id)
+                        .map((product, i) => {
+                          return (
+                            <tr key={i}>
+                              <td className="p-2 border-b-2">#{product.id}</td>
+                              <td className="p-2 border-b-2 w-[100px]">
+                                <img
+                                  className="w-full"
+                                  src={product.image}
+                                  alt="product-image"
+                                />
+                              </td>
+                              <td className="p-2 border-b-2">{product.name}</td>
+                              <td className="p-2 border-b-2">
+                                {numberWithCommas(product.price)} $
+                              </td>
+                              <td className="p-2 border-b-2">{fp.qty}</td>
+                              <td className="p-2 border-b-2">
+                                {numberWithCommas(fp.qty * product.price)} $
+                              </td>
+                            </tr>
+                          );
+                        });
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )
+          })
         ) : (
           <div className="text-center">
             <img
@@ -63,6 +76,7 @@ const OrdersList = () => {
             <p>No purchases have been made yet</p>
           </div>
         )}
+        {/* {factor.map(f => f.products.map(fp => fp.id))} */}
       </div>
     </div>
   );

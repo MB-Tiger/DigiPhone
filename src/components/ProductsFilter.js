@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 const ProductsFilter = (props) => {
   const [isPriceOpen, setIsPriceOpen] = useState(false);

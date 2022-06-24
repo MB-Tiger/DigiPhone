@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlinePlus, AiOutlineMinus, AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import useMyContext from "../hooks/useMyContext";
-import useNumberWithCommas from "../hooks/useNumberWithCommas"
+import useNumberWithCommas from "../hooks/useNumberWithCommas";
 
 const ProductCard = (props) => {
   const { product, i } = props;
@@ -18,9 +18,6 @@ const ProductCard = (props) => {
     } else {
       setCart([...cart, { id: products[unicP].id, qty: 1 }]);
     }
-    console.log(cart);
-    // console.log(unicP)
-    // console.log(unic)
   };
   const removeFromCart = (id) => {
     const unicP = products.findIndex((product) => product.id === id);
@@ -35,10 +32,10 @@ const ProductCard = (props) => {
     }
     setCart([...cart]);
   };
-  // console.log(product.id)
+
   return (
     <div
-      className="bg-white shadow mx-4 mb-10 mt-3 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-lg overflow-hidden relative"
+      className="bg-white min-w-[250px] shadow mx-4 mb-10 mt-3 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-lg overflow-hidden relative"
       key={i}
     >
       <Link to={`/productinfo/${product.id}`}>

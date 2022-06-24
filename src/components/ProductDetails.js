@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import Rating from "react-rating";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 const ProductDetails = (props) => {
+  const { product } = props;
   const [isIntroduction, setIsIntroduction] = useState(true);
   const [isSpecifications, setIsSpecifications] = useState(false);
   const [isComments, setIsComments] = useState(false);
-  const { product } = props;
-  console.log(product.attributes);
+
   return (
     <div className="bg-white mb-3 rounded p-2 text-gray-600 shadow my-10">
       <div>
@@ -185,7 +187,51 @@ const ProductDetails = (props) => {
               </div>
             </div>
           ) : null}
-          {isComments == true ? <div className="px-4 py-6">c</div> : null}
+          {isComments == true ? (
+            <div className="w-full grid grid-cols-4 bg-white px-4 py-6">
+              <div className="lg:sticky top-[80px] lg:col-span-1 col-span-4 space-y-2 mb-5 lg:mb-0">
+                <div>
+                  <span className="text-xl font-medium">{product.rate}</span> /
+                  5
+                </div>
+                <Rating
+                  emptySymbol={
+                    <AiOutlineStar className="text-4xl text-yellow-400" />
+                  }
+                  fullSymbol={
+                    <AiFillStar className="text-4xl text-yellow-400" />
+                  }
+                  placeholderRating={product.rate}
+                  placeholderSymbol={
+                    <AiFillStar className="text-4xl text-yellow-400" />
+                  }
+                  fractions={10}
+                  readonly
+                />
+                {/* <div className="text-sm">
+                  Leave a comment about this article
+                </div> */}
+                <div></div>
+                <button className="border border-red-500 bg-white p-1 text-red-500 rounded-md w-full">
+                  Sumbit comment
+                </button>
+              </div>
+              <div className="w-full lg:col-span-3 lg:pl-10 col-span-4 mt-5 lg:mt-0">
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="w-4 h-1 rounded-full bg-yellow-600"></div>
+                  <div className="font-medium">
+                    Leave a comment about this article
+                  </div>
+                </div>
+                <textarea
+                  className="w-full border-2 rounded p-2"
+                  placeholder="Write here ..."
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>

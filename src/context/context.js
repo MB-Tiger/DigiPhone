@@ -5,8 +5,7 @@ export const ProductContext = React.createContext();
 const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [factor, setFactor] = useState([]);
-  console.log(cart);
-  console.log(factor);
+
   // const UID = () => `${new Date().getTime()}${String(Math.random()).slice(3, 9)}`;
   const [userData, setUserData] = useState({
     name: "",
@@ -787,7 +786,7 @@ const ContextProvider = ({ children }) => {
         "The FE series of Samsung smartphones have gained a lot of fans due to their convenient and powerful technical specifications and, of course, at a more affordable price than the company's flagships, and they have been able to show very good and acceptable performance. Samsung Galaxy S21 FE 5G, as the newest smartphone in this series, is also equipped with powerful and very good technical specifications. In front view, this phone has a 6.4-inch display with a resolution of 1080 x 2400 pixels of Dynamic AMOLED 2X type. So far, it's clear that this phone is equipped with one of the most powerful screens, but when you realize the true power of this screen, you know that it has the ability to display 411 pixels per inch and a maximum refresh rate of 120 Hz. On the back, there is a main camera sensor with a resolution of 12 megapixels and an aperture of f / 1.8, along with an 8-megapixel telephoto sensor with optical triple zoom (zoom without loss of quality) and a 12-megapixel ultra-wide sensor (ultraw). With a viewing angle of 123 degrees, the sensors form the Samsung Galaxy S21 FE 5G triple camera. For the selfie camera, a sensor with a resolution of 32 megapixels is considered wide. In terms of hardware specifications, this phone has also entered the competition with a full hand. The presence of the Exynos 2100 5G processor has enabled the Samsung Galaxy S21 FE 5G to run heavy games such as mobile add-ons and asphalt 9 easily and perform very well. On the other hand, this processor has the ability to support the fifth generation or 5G Internet networks. A battery with a capacity of 4500 mAh and a 25 watt charger equipped with fast charging technology are other specifications for this smartphone.",
     },
   ]);
-  console.log(products);
+
   return (
     <ProductContext.Provider
       value={{
