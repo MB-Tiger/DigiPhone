@@ -9,8 +9,8 @@ const UserProfile = () => {
   useTitle("Profile");
   return (
     <div className="min-h-screen w-full bg-slate-100 py-10">
-      <div className="container grid grid-cols-4 space-x-4">
-        <div className="lg:col-span-1 col-span-4 border shadow-sm p-4 rounded-lg max-h-[250px] bg-white">
+      <div className="container grid grid-cols-4 lg:space-x-4">
+        <div className="lg:col-span-1 col-span-4 border shadow-sm mb-6 p-4 rounded-lg max-h-[250px] bg-white">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
               <img

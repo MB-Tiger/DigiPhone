@@ -1,4 +1,4 @@
-  import React, { useContext } from "react";
+import React, { useContext } from "react";
 import ProductCard from "./ProductCard";
 import HeaderSlider from "./HeaderSlider";
 import useTitle from "../hooks/useTitle";
@@ -10,7 +10,6 @@ const Home = () => {
   // const { products } = useContext(ProductContext);
   const { products } = useMyContext();
 
-
   return (
     <div className="min-h-screen w-full bg-slate-100">
       <HeaderSlider />
@@ -21,7 +20,7 @@ const Home = () => {
             src={require("../img/destination.png")}
             alt="destination"
           />
-          <span>Payment on the spot</span>
+          <span className="md:text-base text-sm">Payment on the spot</span>
         </div>
         <div className="flex items-center space-x-4">
           <img
@@ -29,7 +28,7 @@ const Home = () => {
             src={require("../img/box.png")}
             alt="box"
           />
-          <span>Commodity guarantee</span>
+          <span className="md:text-base text-sm">Commodity guarantee</span>
         </div>
         <div className="flex items-center space-x-4">
           <img
@@ -37,7 +36,7 @@ const Home = () => {
             src={require("../img/truck.png")}
             alt="truck"
           />
-          <span>Fast and secure</span>
+          <span className="md:text-base text-sm">Fast and secure</span>
         </div>
         <div className="flex items-center space-x-4">
           <img
@@ -45,7 +44,7 @@ const Home = () => {
             src={require("../img/exchange.png")}
             alt="exchange"
           />
-          <span>7-day return guarantee</span>
+          <span className="md:text-base text-sm">7-day return guarantee</span>
         </div>
       </div>
       <div className="container">
@@ -100,7 +99,7 @@ const Home = () => {
         <div>Popular</div>
         <div className=" w-12 h-1 rounded-full bg-yellow-600"></div>
       </div>
-      <div className="container flex flex-wrap justify-around">
+      <div className="container flex flex-wrap justify-around pb-8">
         {products
           .sort((a, b) => a.rate - b.rate)
           .reverse()
@@ -109,8 +108,6 @@ const Home = () => {
             return <ProductCard product={product} i={i} key={i} />;
           })}
       </div>
-      <br />
-      <br />
     </div>
   );
 };

@@ -49,8 +49,8 @@ const AdminPanel = () => {
         ></div>
       ) : null}
       {isModal === true ? (
-        <div className="fixed w-[500px] h-auto bg-slate-100 p-5 z-[999] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 m-5 rounded">
-          <div className="space-y-4">
+        <div className="fixed md:w-[500px] sm:w-[450px] w-[300px] overflow-y-auto bg-slate-100 p-5 z-[999] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 my-4 rounded">
+          <div className="space-y-4 overflow-y-auto">
             <p className="text-center text-lg font-semibold">
               Product #{editModalValue.id}
             </p>
@@ -145,8 +145,8 @@ const AdminPanel = () => {
         ></div>
       ) : null}
       {isCreateProductModal === true ? (
-        <div className="fixed w-[500px] h-auto bg-slate-100 p-5 z-[999] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 m-5 rounded">
-          <div className="space-y-4">
+        <div className="fixed md:w-[500px] sm:w-[450px] w-[300px] h-[550px] overflow-y-auto bg-slate-100 p-5 z-[999] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 my-4 rounded">
+          <div className="space-y-4 overflow-y-auto">
             <p className="text-center text-lg font-semibold">Create Product</p>
             <label className="block">
               <p>Product id</p>
@@ -245,51 +245,53 @@ const AdminPanel = () => {
       ) : null}
       <div className="container text-center pt-5">
         <h3 className="text-xl font-bold text-blue-800">Admin panel</h3>
-        <table className="w-full bg-white rounded mt-4">
-          <thead>
-            <tr className="border-b-2">
-              <th className="p-2">Id</th>
-              <th className="p-2">Image</th>
-              <th className="p-2">Name</th>
-              <th className="p-2">Company</th>
-              <th className="p-2">Rate</th>
-              <th className="p-2">Price</th>
-              <th className="p-2"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((proudct, i) => {
-              return (
-                <tr className="border-b-2" key={i}>
-                  <td>#{proudct.id}</td>
-                  <td className="w-[140px]">
-                    <img
-                      className="w-full"
-                      src={proudct.image}
-                      alt="proudct-image"
-                    />
-                  </td>
-                  <td>{proudct.name}</td>
-                  <td>{proudct.company}</td>
-                  <td>{proudct.rate}</td>
-                  <td>{numberWithCommas(proudct.price)}</td>
-                  <td>
-                    <div className="flex justify-evenly space-x-1">
-                      <BiEditAlt
-                        className="text-blue-800 cursor-pointer"
-                        onClick={() => openModal(proudct.id)}
+        <div className="w-full overflow-x-auto">
+          <table className="w-full bg-white rounded mt-4">
+            <thead>
+              <tr className="border-b-2">
+                <th className="p-2">Id</th>
+                <th className="p-2">Image</th>
+                <th className="p-2">Name</th>
+                <th className="p-2">Company</th>
+                <th className="p-2">Rate</th>
+                <th className="p-2">Price</th>
+                <th className="p-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((proudct, i) => {
+                return (
+                  <tr className="border-b-2" key={i}>
+                    <td>#{proudct.id}</td>
+                    <td className="w-[140px]">
+                      <img
+                        className="w-full"
+                        src={proudct.image}
+                        alt="proudct-image"
                       />
-                      <BsTrashFill
-                        className="text-red-700 cursor-pointer"
-                        onClick={() => deleteProduct(proudct.id)}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                    <td>{proudct.name}</td>
+                    <td>{proudct.company}</td>
+                    <td>{proudct.rate}</td>
+                    <td>{numberWithCommas(proudct.price)}</td>
+                    <td>
+                      <div className="flex justify-evenly space-x-2 px-3">
+                        <BiEditAlt
+                          className="text-blue-800 cursor-pointer lg:text-lg"
+                          onClick={() => openModal(proudct.id)}
+                        />
+                        <BsTrashFill
+                          className="text-red-700 cursor-pointer lg:text-lg"
+                          onClick={() => deleteProduct(proudct.id)}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
         <button
           className="mt-10 bg-blue-500 hover:bg-blue-700 transition-all duration-200 text-white rounded p-2"
           onClick={() => openCreateProductModal()}
